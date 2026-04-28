@@ -15,13 +15,13 @@
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
         <a-entity mindar-image-target="targetIndex: 0">
-            <a-video src="#arVideo" width="0.6" height="1" position="0 0 0" rotation="0 0 0"></a-video>
+            <a-video src="#arVideo" width="0.0856" height="0.054" position="0 0 0" rotation="0 0 0"></a-video>
         </a-entity>
     </a-scene>
 
     <script>
         const video = document.querySelector('#arVideo');
-        // ஸ்கேன் ஆனவுடன் வீடியோ பிளே ஆக
+        
         document.querySelector('a-entity[mindar-image-target]').addEventListener("targetFound", event => {
             video.play();
         });
