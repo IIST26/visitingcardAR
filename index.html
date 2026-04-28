@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+</head>
+<body style="margin:0; overflow:hidden;">
+    <img src="./Gemini_Generated_Image_wsp5rowsp5rowsp5.png" style="position:fixed; bottom:20px; right:20px; width:100px; z-index:999;">
+    <a-scene mindar-image="imageTargetSrc: ./targets.mind; uiScanning: false;" vr-mode-ui="enabled: false" color-space="sRGB">
+        <a-assets>
+            <video id="arVideo" src="./videoplayback.mp4" loop="true" crossorigin="anonymous" playsinline></video>
+        </a-assets>
+
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+        <a-entity mindar-image-target="targetIndex: 0">
+            <a-video src="#arVideo" width="0.6" height="1" position="0 0 0" rotation="0 0 0"></a-video>
+        </a-entity>
+    </a-scene>
+
+    <script>
+        const video = document.querySelector('#arVideo');
+        // ஸ்கேன் ஆனவுடன் வீடியோ பிளே ஆக
+        document.querySelector('a-entity[mindar-image-target]').addEventListener("targetFound", event => {
+            video.play();
+        });
+        document.querySelector('a-entity[mindar-image-target]').addEventListener("targetLost", event => {
+            video.pause();
+        });
+    </script>
+</body>
+</html>
